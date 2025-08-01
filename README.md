@@ -1,5 +1,5 @@
 # Unlimited Trial Crossover in Linux
-Script untuk membuat crossover trial menjadi unlimited
+Script untuk reset trial crossover
 
 Link download crossover https://www.codeweavers.com/crossover/download
 
