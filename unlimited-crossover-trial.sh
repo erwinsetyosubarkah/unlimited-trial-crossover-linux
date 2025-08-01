@@ -83,8 +83,47 @@ update_bottle(){
     fi
 }
 
+update_bottle2(){
+    # Cari file .update-timestamp di seluruh sistem (butuh sudo) atau dalam direktori tertentu
+    FILES=$(sudo find ~/.cxoffice/ -type f -name ".update-timestamp" 2>/dev/null)
+
+    # Generate timestamp dalam format yang diinginkan
+    CURRENT_TIMESTAMP=$(date +%s)
+
+    # Loop melalui setiap file yang ditemukan
+    for FILE in $FILES; do
+        echo -e '\r'
+        echo -e '\r'
+        echo -e '====================================='
+        echo "Memperbarui Timestamp di: $FILE"
+        # echo -e '\r'
+        # echo -e '\r'
+        
+        # Gunakan sed untuk mengganti timestamp lama dengan yang baru
+        sed -i "1,\$c\\$CURRENT_TIMESTAMP" "$FILE"
+        # echo -e '\r'
+        # echo -e '\r'
+        # echo "Timestamp diperbarui menjadi: $CURRENT_TIMESTAMP di $FILE"
+        echo -e '====================================='
+        echo -e '\r'
+        echo -e '\r'
+    done
+
+    # Jika tidak ada file ditemukan, tampilkan pesan
+    if [[ -z "$FILES" ]]; then
+        echo -e '\r'
+        echo -e '\r'
+        echo -e '====================================='
+        echo "File .update-timestamp tidak ditemukan."
+        echo -e '====================================='
+        echo -e '\r'
+        echo -e '\r'
+    fi
+}
+
 input_crossover_location
 update_bottle
+update_bottle2
 
 echo -e '\r'
 echo -e '\r'
